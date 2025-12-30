@@ -136,7 +136,7 @@ navigation:
   children:
   - title: Go 专题
     url: /go/go-environment-setup
-- title: 胡思乱想
+- title: 胡言乱语
   children:
   - title: 关于成年男性脱发的思考
     url: /self/hair
@@ -156,6 +156,8 @@ go:
     url: /go/go-environment-setup
 - title: goctl 微服务开发
   children:
+  - title: MySQL数据库准备（Docker+DBeaver）
+    url: /go/mysql-docker-dbeaver-setup
   - title: goctl基础环境搭建指南
     url: /go/goctl-environment-setup
 
