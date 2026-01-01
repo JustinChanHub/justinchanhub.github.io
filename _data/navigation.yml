@@ -152,12 +152,16 @@ go:
   children:
   - title: Go基础环境配置指南
     url: /go/go-environment-setup
-- title: goctl 微服务开发
+- title: go-zero微服务准备
   children:
-  - title: MySQL数据库准备（Docker+DBeaver）
+  - title: MySQL数据库准备Docker+DBeaver
     url: /go/mysql-docker-dbeaver-setup
   - title: goctl基础环境搭建指南
     url: /go/goctl-environment-setup
+- title: go-zero微服务基础
+  children:
+  - title: 认识go-zero网关
+    url: /go/go-zero-gateway
 
 # python:
 # - title:

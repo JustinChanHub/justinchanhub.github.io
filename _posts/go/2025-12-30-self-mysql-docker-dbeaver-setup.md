@@ -1,5 +1,5 @@
 ---
-title: MySQL 数据库准备（Docker + DBeaver）
+title: MySQL 数据库准备Docker + DBeaver
 tags: mysql docker dbeaver database
 permalink: /go/mysql-docker-dbeaver-setup
 ---
