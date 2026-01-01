@@ -140,10 +140,8 @@ navigation:
   children:
   - title: 关于成年男性脱发的思考
     url: /self/hair
-  # - title: Python 专题
-  #   url: /python/a
-  # - title: Java 专题
-  #   url: /java/b
+  - title: 无忧行号码托管和eSIM使用体验
+    url: /self/wuyouxing-esim
 
 go:
 - title:
