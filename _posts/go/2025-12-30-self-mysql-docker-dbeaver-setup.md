@@ -46,6 +46,9 @@ docker run -d \
 ```sql
 -- 01_db_user.sql
 
+-- 设置字符集，避免初始化时出现乱码
+SET NAMES utf8mb4;
+
 -- 创建数据库（如果不存在）
 CREATE DATABASE IF NOT EXISTS name_db
   DEFAULT CHARACTER SET utf8mb4
@@ -132,7 +135,28 @@ Access denied for user 'nothing'@'192.168.xx.x'
 ```
 更加适合容器化和本地开发环境。
 
-## 八、最终稳定可用的连接配置
+## 八、字符编码问题及解决方案
+
+在 MySQL 初始化过程中，如果 SQL 脚本包含中文注释、表结构说明等内容，很容易出现乱码问题。主要原因有两个：
+
+1. **初始化脚本字符编码处理不当**：虽然脚本文件使用 UTF-8 编码，但在容器内执行时如果没有显式设置字符集，可能导致乱码。
+
+2. **DBeaver 连接编码配置缺失**：DBeaver 默认连接可能没有正确处理 UTF-8 字符，需要在连接串中添加编码参数。
+
+### 解决方案
+
+**SQL 初始化脚本开头添加字符集设置**：
+```sql
+SET NAMES utf8mb4;
+```
+这样可以确保后续的建表、注释等操作使用正确的字符编码。
+
+**DBeaver 连接串添加编码参数**：
+```
+jdbc:mysql://localhost:3306/mydb?useUnicode=true&characterEncoding=UTF-8
+```
+
+## 九、最终稳定可用的连接配置
 
 在所有问题解决后，我的本地连接配置如下：
 - Host：127.0.0.1
@@ -142,14 +166,17 @@ Access denied for user 'nothing'@'192.168.xx.x'
 - Driver properties：
   - allowPublicKeyRetrieval = true
   - useSSL = false
+  - useUnicode = true
+  - characterEncoding = UTF-8
 
 这套配置在本地开发环境下运行稳定，没有再遇到连接问题。
 
-## 九、总结
+## 十、总结
 
 这次 MySQL 数据库准备过程，让我再次确认了一些基础但非常重要的经验：
 - Docker 化数据库是后端开发的基本功
 - 初始化脚本要理解「只执行一次」的机制
+- 字符编码问题需要特别注意，SQL 脚本开头设置 SET NAMES utf8mb4，DBeaver 连接添加编码参数
 - MySQL 8 的认证方式需要额外注意
 - 合适的数据库工具可以极大提升效率
 
